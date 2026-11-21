@@ -191,10 +191,15 @@ envelopes and types:
 
 ## Live test
 
-`TestLive` reads from a real organisation and never writes:
+`TestLive` reads from a disposable test organisation and never writes. It
+takes the same variables as cashctrl-ts-sdk's write harness, refuses an
+organisation or key that matches `CASHCTRL_DOMAINID`, `CASHCTRL_ORG`,
+`CASHCTRL_APIKEY` or `CASHCTRL_API_KEY`, and wants the organisation's name
+repeated:
 
 ```sh
-CASHCTRL_LIVE_TEST=1 CASHCTRL_ORG=myorg CASHCTRL_APIKEY=... go test -run TestLive -v .
+CASHCTRL_TEST_DOMAINID=mytestorg CASHCTRL_TEST_APIKEY=... \
+CASHCTRL_LIVE_TEST=mytestorg go test -run TestLive -v .
 ```
 
 Use an API user with a read-only role.

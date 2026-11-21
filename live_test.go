@@ -3,23 +3,18 @@ package cashctrl
 import (
 	"context"
 	"os"
+	"strings"
 	"testing"
 	"time"
 )
 
-// TestLive reads from a real organisation. It runs only with
-// CASHCTRL_LIVE_TEST=1 and CASHCTRL_ORG and CASHCTRL_APIKEY set, and calls
-// read endpoints only: it never writes, and it skips the GETs with side
-// effects (fiscalperiod/reopen_months.json, sequencenumber/get) and the
-// document reads, which CashCtrl logs as downloads.
+// TestLive reads from a disposable test organisation. It runs only with
+// CASHCTRL_TEST_DOMAINID and CASHCTRL_TEST_APIKEY set and CASHCTRL_LIVE_TEST
+// repeating the organisation's name, and calls read endpoints only: it never
+// writes, and it skips the GETs with side effects (fiscalperiod/reopen_months.json,
+// sequencenumber/get) and the document reads, which CashCtrl logs as downloads.
 func TestLive(t *testing.T) {
-	if os.Getenv("CASHCTRL_LIVE_TEST") != "1" {
-		t.Skip("set CASHCTRL_LIVE_TEST=1, CASHCTRL_ORG and CASHCTRL_APIKEY to read from a real organisation")
-	}
-	c := &Client{Org: os.Getenv("CASHCTRL_ORG"), APIKey: os.Getenv("CASHCTRL_APIKEY"), Lang: LangEN, MaxRetries: 5}
-	if c.Org == "" || c.APIKey == "" {
-		t.Fatal("CASHCTRL_ORG and CASHCTRL_APIKEY must be set")
-	}
+	c := liveClient(t)
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
 	defer cancel()
 
@@ -67,4 +62,34 @@ func TestLive(t *testing.T) {
 	if _, err := c.Setting().Read(ctx); err != nil {
 		t.Errorf("setting/read.json: %v", err)
 	}
+}
+
+// liveClient resolves the test organisation as cashctrl-ts-sdk's write harness
+// does: only the CASHCTRL_TEST_* names, never a production organisation or key
+// from the environment, and the name confirmed in CASHCTRL_LIVE_TEST.
+func liveClient(t *testing.T) *Client {
+	t.Helper()
+	org := strings.TrimSpace(os.Getenv("CASHCTRL_TEST_DOMAINID"))
+	key := strings.TrimSpace(os.Getenv("CASHCTRL_TEST_APIKEY"))
+	confirm := os.Getenv("CASHCTRL_LIVE_TEST")
+	if confirm == "" {
+		t.Skip("set CASHCTRL_TEST_DOMAINID and CASHCTRL_TEST_APIKEY to a disposable organisation and CASHCTRL_LIVE_TEST to its name")
+	}
+	if org == "" || key == "" {
+		t.Fatal("CASHCTRL_TEST_DOMAINID and CASHCTRL_TEST_APIKEY must name a disposable organisation")
+	}
+	for _, name := range []string{"CASHCTRL_DOMAINID", "CASHCTRL_ORG"} {
+		if v := strings.TrimSpace(os.Getenv(name)); v != "" && v == org {
+			t.Fatalf("CASHCTRL_TEST_DOMAINID is the organisation in %s: refusing to test against production", name)
+		}
+	}
+	for _, name := range []string{"CASHCTRL_APIKEY", "CASHCTRL_API_KEY"} {
+		if v := strings.TrimSpace(os.Getenv(name)); v != "" && v == key {
+			t.Fatalf("CASHCTRL_TEST_APIKEY is the key in %s: refusing to test against production", name)
+		}
+	}
+	if confirm != org {
+		t.Fatalf("confirm the target: CASHCTRL_LIVE_TEST=%s", org)
+	}
+	return &Client{Org: org, APIKey: key, Lang: LangEN, MaxRetries: 5}
 }
