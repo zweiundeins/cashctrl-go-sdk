@@ -233,19 +233,19 @@ func (p *CurrencyUpdateParams) values() (url.Values, error) {
 // Currency is a record of /api/v1/currency, typed from the shapes the TypeScript
 // SDK's probe recorded.
 type Currency struct {
-	ID            int64    `json:"id,omitempty"`
-	Created       string   `json:"created,omitempty"`
-	CreatedBy     string   `json:"createdBy,omitempty"`
-	LastUpdated   string   `json:"lastUpdated,omitempty"`
-	LastUpdatedBy string   `json:"lastUpdatedBy,omitempty"`
-	Code          string   `json:"code,omitempty"`
-	Description   string   `json:"description,omitempty"`
-	Rate          *float64 `json:"rate,omitempty"`
-	Auto          bool     `json:"auto,omitempty"`
-	Value         string   `json:"value,omitempty"`
-	Default       bool     `json:"default,omitempty"`
-	Index         string   `json:"index,omitempty"`
-	Text          string   `json:"text,omitempty"`
-	IsDefault     bool     `json:"isDefault,omitempty"`
-	IsAuto        bool     `json:"isAuto,omitempty"`
+	ID            int64       `json:"id,omitempty"`
+	Created       string      `json:"created,omitempty"`
+	CreatedBy     string      `json:"createdBy,omitempty"`
+	LastUpdated   string      `json:"lastUpdated,omitempty"`
+	LastUpdatedBy string      `json:"lastUpdatedBy,omitempty"`
+	Code          string      `json:"code,omitempty"`
+	Description   string      `json:"description,omitempty"`
+	Rate          NullFloat64 `json:"rate,omitempty"`
+	Auto          bool        `json:"auto,omitempty"`
+	Value         string      `json:"value,omitempty"`
+	Default       bool        `json:"default,omitempty"`
+	Index         string      `json:"index,omitempty"`
+	Text          string      `json:"text,omitempty"`
+	IsDefault     bool        `json:"isDefault,omitempty"`
+	IsAuto        bool        `json:"isAuto,omitempty"`
 }

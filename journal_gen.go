@@ -2150,13 +2150,13 @@ type Journal struct {
 	CreditID              int64              `json:"creditId,omitempty"`
 	DebitID               int64              `json:"debitId,omitempty"`
 	AssociateID           int64              `json:"associateId,omitempty"`
-	TaxID                 *int64             `json:"taxId,omitempty"`
+	TaxID                 NullInt64          `json:"taxId,omitempty"`
 	OrderID               *int64             `json:"orderId,omitempty"`
 	OrderBookEntryID      json.RawMessage    `json:"orderBookEntryId,omitempty"`
 	StatementID           *int64             `json:"statementId,omitempty"`
 	SalaryBookEntryID     json.RawMessage    `json:"salaryBookEntryId,omitempty"`
 	InventoryID           json.RawMessage    `json:"inventoryId,omitempty"`
-	CurrencyID            *int64             `json:"currencyId,omitempty"`
+	CurrencyID            NullInt64          `json:"currencyId,omitempty"`
 	ImportEntryID         json.RawMessage    `json:"importEntryId,omitempty"`
 	RecurrenceID          json.RawMessage    `json:"recurrenceId,omitempty"`
 	Items                 []json.RawMessage  `json:"items,omitempty"`
@@ -2191,10 +2191,10 @@ type Journal struct {
 	Nr                    string             `json:"nr,omitempty"`
 	Recurrence            *string            `json:"recurrence,omitempty"`
 	EndDate               *string            `json:"endDate,omitempty"`
-	DaysBefore            *int               `json:"daysBefore,omitempty"`
+	DaysBefore            NullInt64          `json:"daysBefore,omitempty"`
 	NotifyType            *string            `json:"notifyType,omitempty"`
-	NotifyPersonID        *int64             `json:"notifyPersonId,omitempty"`
-	NotifyUserID          *int64             `json:"notifyUserId,omitempty"`
+	NotifyPersonID        NullInt64          `json:"notifyPersonId,omitempty"`
+	NotifyUserID          NullInt64          `json:"notifyUserId,omitempty"`
 	StartDate             *string            `json:"startDate,omitempty"`
 	NotifyEmail           *string            `json:"notifyEmail,omitempty"`
 	DebitName             string             `json:"debitName,omitempty"`
@@ -2320,15 +2320,15 @@ type JournalImportEntry struct {
 	GuessedCreditID       int64                           `json:"guessedCreditId,omitempty"`
 	AssociateID           int64                           `json:"associateId,omitempty"`
 	GuessedAssociateID    int64                           `json:"guessedAssociateId,omitempty"`
-	TaxID                 *int64                          `json:"taxId,omitempty"`
+	TaxID                 NullInt64                       `json:"taxId,omitempty"`
 	GuessedTaxID          json.RawMessage                 `json:"guessedTaxId,omitempty"`
 	OrderID               int64                           `json:"orderId,omitempty"`
 	GuessedOrderID        json.RawMessage                 `json:"guessedOrderId,omitempty"`
 	OrderStatusID         int64                           `json:"orderStatusId,omitempty"`
-	StatementID           *int64                          `json:"statementId,omitempty"`
+	StatementID           NullInt64                       `json:"statementId,omitempty"`
 	GuessedStatementID    json.RawMessage                 `json:"guessedStatementId,omitempty"`
 	StatementStatusID     json.RawMessage                 `json:"statementStatusId,omitempty"`
-	CurrencyID            *int64                          `json:"currencyId,omitempty"`
+	CurrencyID            NullInt64                       `json:"currencyId,omitempty"`
 	OriginalCurrencyID    json.RawMessage                 `json:"originalCurrencyId,omitempty"`
 	Type                  string                          `json:"type,omitempty"`
 	DebitOrCredit         string                          `json:"debitOrCredit,omitempty"`

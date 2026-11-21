@@ -86,7 +86,7 @@ type generator struct {
 var core = []string{
 	"Client", "New", "Lang", "LangDE", "LangFR", "LangIT", "LangEN", "WithLang", "APIError", "FieldError", "DecodeError",
 	"Download", "List", "WriteResult", "Date", "DateOf", "NewDate", "ParseDate", "Filter", "Where", "Comparison", "Eq",
-	"Like", "Gt", "Lt", "SortDir", "Asc", "Desc", "Ptr", "All",
+	"Like", "Gt", "Lt", "SortDir", "Asc", "Desc", "Ptr", "All", "NullInt64", "NullFloat64",
 }
 
 func newGenerator(spec Spec, probed ResponseSpec) *generator {
@@ -753,7 +753,7 @@ func docScalar(p Param) string {
 }
 
 // widenNullFields types a field that was null in every sample from the
-// documented create/update parameter of the same name.
+// documented create/update parameter of the same name, marked Unobserved.
 func widenNullFields(s Shape, documented map[string]Param) Shape {
 	if s.Kind == "array" && s.Items != nil {
 		items := widenNullFields(*s.Items, documented)
@@ -768,7 +768,7 @@ func widenNullFields(s Shape, documented map[string]Param) Shape {
 		next := f.Shape
 		if next.Kind == "scalar" && len(next.Types) == 1 && next.Types[0] == "null" {
 			if sc := docScalar(p); has && sc != "" {
-				next = Shape{Kind: "scalar", Types: []string{sc, "null"}}
+				next = Shape{Kind: "scalar", Types: []string{sc, "null"}, Unobserved: true}
 			}
 		} else if next.Kind == "object" || next.Kind == "array" {
 			next = widenNullFields(next, paramIndex(p.Fields))
@@ -848,6 +848,12 @@ func (g *generator) shapeGo(s Shape, hint, self, grp, fieldName string, entity b
 		}
 		if len(types) != 1 {
 			return "json.RawMessage"
+		}
+		if s.Unobserved && types[0] == "number" {
+			if idLike(fieldName) || intLike(fieldName) {
+				return "NullInt64"
+			}
+			return "NullFloat64"
 		}
 		var t string
 		switch types[0] {

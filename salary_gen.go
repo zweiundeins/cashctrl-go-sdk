@@ -5407,14 +5407,14 @@ func (p *SalaryTypeUpdateParams) values() (url.Values, error) {
 // SalaryCategory is a record of /api/v1/salary/category, typed from the shapes
 // the TypeScript SDK's probe recorded.
 type SalaryCategory struct {
-	ID            int64  `json:"id,omitempty"`
-	Created       string `json:"created,omitempty"`
-	CreatedBy     string `json:"createdBy,omitempty"`
-	LastUpdated   string `json:"lastUpdated,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	ParentID      *int64 `json:"parentId,omitempty"`
-	Number        string `json:"number,omitempty"`
-	Name          string `json:"name,omitempty"`
+	ID            int64     `json:"id,omitempty"`
+	Created       string    `json:"created,omitempty"`
+	CreatedBy     string    `json:"createdBy,omitempty"`
+	LastUpdated   string    `json:"lastUpdated,omitempty"`
+	LastUpdatedBy string    `json:"lastUpdatedBy,omitempty"`
+	ParentID      NullInt64 `json:"parentId,omitempty"`
+	Number        string    `json:"number,omitempty"`
+	Name          string    `json:"name,omitempty"`
 }
 
 // SalaryCertificate is a record of /api/v1/salary/certificate, typed from the
@@ -5479,9 +5479,9 @@ type SalaryCertificateTemplate struct {
 	LastUpdatedBy  string                             `json:"lastUpdatedBy,omitempty"`
 	ParentID       *int64                             `json:"parentId,omitempty"`
 	Elements       []SalaryCertificateTemplateElement `json:"elements,omitempty"`
-	FileID         *int64                             `json:"fileId,omitempty"`
-	OrgLocationID  *int64                             `json:"orgLocationId,omitempty"`
-	MailTemplateID *int64                             `json:"mailTemplateId,omitempty"`
+	FileID         NullInt64                          `json:"fileId,omitempty"`
+	OrgLocationID  NullInt64                          `json:"orgLocationId,omitempty"`
+	MailTemplateID NullInt64                          `json:"mailTemplateId,omitempty"`
 	Name           string                             `json:"name,omitempty"`
 	SystemID       *string                            `json:"systemId,omitempty"`
 	MailSubject    *string                            `json:"mailSubject,omitempty"`
@@ -5761,7 +5761,7 @@ type SalaryStatementInsurance struct {
 	ID              int64           `json:"id,omitempty"`
 	StatementID     int64           `json:"statementId,omitempty"`
 	ContractID      int64           `json:"contractId,omitempty"`
-	CodeID          *int64          `json:"codeId,omitempty"`
+	CodeID          NullInt64       `json:"codeId,omitempty"`
 	PersonID        int64           `json:"personId,omitempty"`
 	ContractNr      *string         `json:"contractNr,omitempty"`
 	SubNr           json.RawMessage `json:"subNr,omitempty"`
@@ -5808,7 +5808,7 @@ type SalaryStatement struct {
 	PersonID        int64                        `json:"personId,omitempty"`
 	TemplateID      int64                        `json:"templateId,omitempty"`
 	FiscalPeriodID  int64                        `json:"fiscalPeriodId,omitempty"`
-	CurrencyID      *int64                       `json:"currencyId,omitempty"`
+	CurrencyID      NullInt64                    `json:"currencyId,omitempty"`
 	RecurrenceID    int64                        `json:"recurrenceId,omitempty"`
 	StatusID        int64                        `json:"statusId,omitempty"`
 	FileID          json.RawMessage              `json:"fileId,omitempty"`
@@ -5847,10 +5847,10 @@ type SalaryStatement struct {
 	AccountID       int64                        `json:"accountId,omitempty"`
 	Recurrence      string                       `json:"recurrence,omitempty"`
 	EndDate         *string                      `json:"endDate,omitempty"`
-	DaysBefore      *int                         `json:"daysBefore,omitempty"`
+	DaysBefore      NullInt64                    `json:"daysBefore,omitempty"`
 	NotifyType      *string                      `json:"notifyType,omitempty"`
-	NotifyPersonID  *int64                       `json:"notifyPersonId,omitempty"`
-	NotifyUserID    *int64                       `json:"notifyUserId,omitempty"`
+	NotifyPersonID  NullInt64                    `json:"notifyPersonId,omitempty"`
+	NotifyUserID    NullInt64                    `json:"notifyUserId,omitempty"`
 	StartDate       string                       `json:"startDate,omitempty"`
 	NotifyEmail     string                       `json:"notifyEmail,omitempty"`
 	StatusName      string                       `json:"statusName,omitempty"`
@@ -5910,8 +5910,8 @@ type SalaryTemplateType struct {
 	ID                   int64             `json:"id,omitempty"`
 	TypeID               int64             `json:"typeId,omitempty"`
 	TemplateID           int64             `json:"templateId,omitempty"`
-	DebitID              *int64            `json:"debitId,omitempty"`
-	CreditID             *int64            `json:"creditId,omitempty"`
+	DebitID              NullInt64         `json:"debitId,omitempty"`
+	CreditID             NullInt64         `json:"creditId,omitempty"`
 	RowName              *string           `json:"rowName,omitempty"`
 	Description          *string           `json:"description,omitempty"`
 	OnlyMonth            *float64          `json:"onlyMonth,omitempty"`
@@ -6090,12 +6090,12 @@ type SalaryTemplate struct {
 	LastUpdated           string                              `json:"lastUpdated,omitempty"`
 	LastUpdatedBy         string                              `json:"lastUpdatedBy,omitempty"`
 	ParentID              *int64                              `json:"parentId,omitempty"`
-	CurrencyID            *int64                              `json:"currencyId,omitempty"`
+	CurrencyID            NullInt64                           `json:"currencyId,omitempty"`
 	LayoutID              *int64                              `json:"layoutId,omitempty"`
-	OrgLocationID         *int64                              `json:"orgLocationId,omitempty"`
-	HeaderTemplateID      *int64                              `json:"headerTemplateId,omitempty"`
-	FooterTemplateID      *int64                              `json:"footerTemplateId,omitempty"`
-	MailTemplateID        *int64                              `json:"mailTemplateId,omitempty"`
+	OrgLocationID         NullInt64                           `json:"orgLocationId,omitempty"`
+	HeaderTemplateID      NullInt64                           `json:"headerTemplateId,omitempty"`
+	FooterTemplateID      NullInt64                           `json:"footerTemplateId,omitempty"`
+	MailTemplateID        NullInt64                           `json:"mailTemplateId,omitempty"`
 	SequenceNrID          *int64                              `json:"sequenceNrId,omitempty"`
 	Types                 []SalaryTemplateType                `json:"types,omitempty"`
 	Insurances            []SalaryTemplateInsurance           `json:"insurances,omitempty"`
@@ -6282,8 +6282,8 @@ type SalaryType struct {
 	LastUpdatedBy        string                     `json:"lastUpdatedBy,omitempty"`
 	CategoryID           int64                      `json:"categoryId,omitempty"`
 	DebitID              int64                      `json:"debitId,omitempty"`
-	CreditID             *int64                     `json:"creditId,omitempty"`
-	InsuranceTypeID      *int64                     `json:"insuranceTypeId,omitempty"`
+	CreditID             NullInt64                  `json:"creditId,omitempty"`
+	InsuranceTypeID      NullInt64                  `json:"insuranceTypeId,omitempty"`
 	VariableID           int64                      `json:"variableId,omitempty"`
 	Fields               []SalaryTypeField          `json:"fields,omitempty"`
 	PreCalculations      []SalaryTypePreCalculation `json:"preCalculations,omitempty"`

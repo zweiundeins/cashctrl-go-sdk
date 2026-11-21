@@ -989,7 +989,7 @@ type File struct {
 	Name            string           `json:"name,omitempty"`
 	MimeType        string           `json:"mimeType,omitempty"`
 	Size            float64          `json:"size,omitempty"`
-	CategoryID      *int64           `json:"categoryId,omitempty"`
+	CategoryID      NullInt64        `json:"categoryId,omitempty"`
 	AttachedTo      []FileAttachedTo `json:"attachedTo,omitempty"`
 	ParentID        json.RawMessage  `json:"parentId,omitempty"`
 	Description     *string          `json:"description,omitempty"`

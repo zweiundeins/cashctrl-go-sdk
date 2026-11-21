@@ -611,7 +611,7 @@ type Customfield struct {
 	FieldLabel          *string         `json:"fieldLabel,omitempty"`
 	FieldTextRight      *string         `json:"fieldTextRight,omitempty"`
 	FieldInfo           string          `json:"fieldInfo,omitempty"`
-	MaxWidth            *float64        `json:"maxWidth,omitempty"`
+	MaxWidth            NullFloat64     `json:"maxWidth,omitempty"`
 	Type                string          `json:"type,omitempty"`
 	DataType            string          `json:"dataType,omitempty"`
 	Values              string          `json:"values,omitempty"`

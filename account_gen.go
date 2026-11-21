@@ -2335,8 +2335,8 @@ type Account struct {
 	LastUpdated                  string            `json:"lastUpdated,omitempty"`
 	LastUpdatedBy                string            `json:"lastUpdatedBy,omitempty"`
 	CategoryID                   int64             `json:"categoryId,omitempty"`
-	CurrencyID                   *int64            `json:"currencyId,omitempty"`
-	TaxID                        *int64            `json:"taxId,omitempty"`
+	CurrencyID                   NullInt64         `json:"currencyId,omitempty"`
+	TaxID                        NullInt64         `json:"taxId,omitempty"`
 	Attachments                  []json.RawMessage `json:"attachments,omitempty"`
 	Allocations                  []json.RawMessage `json:"allocations,omitempty"`
 	Number                       string            `json:"number,omitempty"`
@@ -2347,8 +2347,8 @@ type Account struct {
 	AllocationCount              float64           `json:"allocationCount,omitempty"`
 	CostCenterIDs                json.RawMessage   `json:"costCenterIds,omitempty"`
 	CostCenterNumbers            json.RawMessage   `json:"costCenterNumbers,omitempty"`
-	TargetMin                    *float64          `json:"targetMin,omitempty"`
-	TargetMax                    *float64          `json:"targetMax,omitempty"`
+	TargetMin                    NullFloat64       `json:"targetMin,omitempty"`
+	TargetMax                    NullFloat64       `json:"targetMax,omitempty"`
 	CurrencyCode                 json.RawMessage   `json:"currencyCode,omitempty"`
 	FullName                     string            `json:"fullName,omitempty"`
 	AccountClass                 string            `json:"accountClass,omitempty"`
@@ -2378,13 +2378,13 @@ type AccountBank struct {
 	LastUpdated                  string            `json:"lastUpdated,omitempty"`
 	LastUpdatedBy                string            `json:"lastUpdatedBy,omitempty"`
 	AccountID                    int64             `json:"accountId,omitempty"`
-	CurrencyID                   *int64            `json:"currencyId,omitempty"`
+	CurrencyID                   NullInt64         `json:"currencyId,omitempty"`
 	Attachments                  []json.RawMessage `json:"attachments,omitempty"`
 	Type                         string            `json:"type,omitempty"`
 	Name                         string            `json:"name,omitempty"`
 	IBAN                         string            `json:"iban,omitempty"`
 	QrIBAN                       string            `json:"qrIban,omitempty"`
-	QrFirstDigits                *int              `json:"qrFirstDigits,omitempty"`
+	QrFirstDigits                NullInt64         `json:"qrFirstDigits,omitempty"`
 	BIC                          string            `json:"bic,omitempty"`
 	URL                          *string           `json:"url,omitempty"`
 	Notes                        *string           `json:"notes,omitempty"`
@@ -2404,18 +2404,18 @@ type AccountBank struct {
 // AccountCategory is a record of /api/v1/account/category, typed from the shapes
 // the TypeScript SDK's probe recorded.
 type AccountCategory struct {
-	ID            int64  `json:"id,omitempty"`
-	Created       string `json:"created,omitempty"`
-	CreatedBy     string `json:"createdBy,omitempty"`
-	LastUpdated   string `json:"lastUpdated,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	ParentID      *int64 `json:"parentId,omitempty"`
-	AccountClass  string `json:"accountClass,omitempty"`
-	Number        string `json:"number,omitempty"`
-	Name          string `json:"name,omitempty"`
-	System        bool   `json:"system,omitempty"`
-	FullName      string `json:"fullName,omitempty"`
-	IsSystem      bool   `json:"isSystem,omitempty"`
+	ID            int64     `json:"id,omitempty"`
+	Created       string    `json:"created,omitempty"`
+	CreatedBy     string    `json:"createdBy,omitempty"`
+	LastUpdated   string    `json:"lastUpdated,omitempty"`
+	LastUpdatedBy string    `json:"lastUpdatedBy,omitempty"`
+	ParentID      NullInt64 `json:"parentId,omitempty"`
+	AccountClass  string    `json:"accountClass,omitempty"`
+	Number        string    `json:"number,omitempty"`
+	Name          string    `json:"name,omitempty"`
+	System        bool      `json:"system,omitempty"`
+	FullName      string    `json:"fullName,omitempty"`
+	IsSystem      bool      `json:"isSystem,omitempty"`
 }
 
 // AccountCategoryTreeResult is a response object, typed from the shapes the

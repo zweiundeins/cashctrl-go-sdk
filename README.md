@@ -132,7 +132,8 @@ endpoint the specification does not have.
 ## Layout
 
 ```
-client.go, errors.go, params.go, list.go   hand-written: transport, errors, parameter types
+client.go, errors.go, params.go, list.go,  hand-written: transport, errors, parameter types,
+null.go                                    tolerant numbers
 *_gen.go                                   generated, one file per endpoint group (19)
 endpoints_gen_test.go                      generated: one call of every method, for the tests
 cmd/gen, internal/gen                      the generator
@@ -182,7 +183,13 @@ envelopes and types:
   `leaf` and `data` that the list entity lacks.
 - A resource's record type merges the probed `read.json` and `list.json`
   shapes. A field that was null in every sample takes its type from the
-  documented create or update parameter of the same name.
+  documented create or update parameter of the same name. Where that type is
+  a number, the field is a `cashctrl.NullInt64` (ids and counts) or
+  `cashctrl.NullFloat64`, which accepts a JSON number, a numeric string, an
+  empty string and null (`Valid` is false for the last two, `Ptr()` gives
+  `*int64` or `*float64`): CashCtrl answers some of them as strings, such as
+  `currencyId` in `account/list.json`. Fields the probe saw as numbers keep
+  plain `int64`, `int` and `float64`.
 - `list.json` and `tree.json` unwrap `data` into a `List`, `read.json`
   unwraps `data` into the record, other GETs follow the probe. An endpoint the
   probe has no shape for answers `json.RawMessage` (27 of the JSON endpoints).

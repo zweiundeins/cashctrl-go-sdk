@@ -2105,7 +2105,7 @@ type Person struct {
 	BankData                    *string                   `json:"bankData,omitempty"`
 	VatUID                      *string                   `json:"vatUid,omitempty"`
 	DateBirth                   *string                   `json:"dateBirth,omitempty"`
-	DiscountPercentage          *float64                  `json:"discountPercentage,omitempty"`
+	DiscountPercentage          NullFloat64               `json:"discountPercentage,omitempty"`
 	DiscountInherited           json.RawMessage           `json:"discountInherited,omitempty"`
 	DiscountEffective           json.RawMessage           `json:"discountEffective,omitempty"`
 	Notes                       *string                   `json:"notes,omitempty"`
@@ -2115,7 +2115,7 @@ type Person struct {
 	MobileWork                  json.RawMessage           `json:"mobileWork,omitempty"`
 	MobilePrivate               json.RawMessage           `json:"mobilePrivate,omitempty"`
 	CountryName                 string                    `json:"countryName,omitempty"`
-	SuperiorID                  *int64                    `json:"superiorId,omitempty"`
+	SuperiorID                  NullInt64                 `json:"superiorId,omitempty"`
 	SuperiorName                json.RawMessage           `json:"superiorName,omitempty"`
 	Color                       *string                   `json:"color,omitempty"`
 	AltName                     *string                   `json:"altName,omitempty"`
@@ -2138,9 +2138,9 @@ type PersonCategory struct {
 	CreatedBy             string          `json:"createdBy,omitempty"`
 	LastUpdated           string          `json:"lastUpdated,omitempty"`
 	LastUpdatedBy         string          `json:"lastUpdatedBy,omitempty"`
-	ParentID              *int64          `json:"parentId,omitempty"`
-	SequenceNrID          *int64          `json:"sequenceNrId,omitempty"`
-	DiscountPercentage    *float64        `json:"discountPercentage,omitempty"`
+	ParentID              NullInt64       `json:"parentId,omitempty"`
+	SequenceNrID          NullInt64       `json:"sequenceNrId,omitempty"`
+	DiscountPercentage    NullFloat64     `json:"discountPercentage,omitempty"`
 	DiscountInherited     json.RawMessage `json:"discountInherited,omitempty"`
 	Name                  string          `json:"name,omitempty"`
 	SequenceNrIDInherited json.RawMessage `json:"sequenceNrIdInherited,omitempty"`

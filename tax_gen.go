@@ -271,10 +271,10 @@ type TaxComponent struct {
 // TaxRate is a response object, typed from the shapes the TypeScript SDK's probe
 // recorded.
 type TaxRate struct {
-	ID             int64    `json:"id,omitempty"`
-	DateValid      *string  `json:"dateValid,omitempty"`
-	Percentage     float64  `json:"percentage,omitempty"`
-	PercentageFlat *float64 `json:"percentageFlat,omitempty"`
+	ID             int64       `json:"id,omitempty"`
+	DateValid      *string     `json:"dateValid,omitempty"`
+	Percentage     float64     `json:"percentage,omitempty"`
+	PercentageFlat NullFloat64 `json:"percentageFlat,omitempty"`
 }
 
 // Tax is a record of /api/v1/tax, typed from the shapes the TypeScript SDK's

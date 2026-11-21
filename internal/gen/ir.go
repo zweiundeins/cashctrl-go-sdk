@@ -46,6 +46,9 @@ type Shape struct {
 	Types  []string
 	Fields []ShapeField // in the order the probe saw them
 	Items  *Shape
+	// Unobserved marks a scalar typed from the parameter docs because every
+	// sample was null; a number then decodes tolerantly (NullInt64, NullFloat64).
+	Unobserved bool
 }
 
 // ShapeField is one member of an object shape.

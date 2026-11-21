@@ -3040,7 +3040,7 @@ func (p *OrderPaymentDownloadParams) values() (url.Values, error) {
 type OrderItem struct {
 	ID                          int64             `json:"id,omitempty"`
 	OrderID                     int64             `json:"orderId,omitempty"`
-	InventoryID                 *int64            `json:"inventoryId,omitempty"`
+	InventoryID                 NullInt64         `json:"inventoryId,omitempty"`
 	AccountID                   int64             `json:"accountId,omitempty"`
 	TaxID                       int64             `json:"taxId,omitempty"`
 	UnitID                      string            `json:"unitId,omitempty"`
@@ -3088,14 +3088,14 @@ type Order struct {
 	AssociateID           int64             `json:"associateId,omitempty"`
 	AccountID             int64             `json:"accountId,omitempty"`
 	RecurrenceID          json.RawMessage   `json:"recurrenceId,omitempty"`
-	CurrencyID            *int64            `json:"currencyId,omitempty"`
+	CurrencyID            NullInt64         `json:"currencyId,omitempty"`
 	Items                 []OrderItem       `json:"items,omitempty"`
 	ResponsiblePersonID   *string           `json:"responsiblePersonId,omitempty"`
 	StatusID              int64             `json:"statusId,omitempty"`
-	RoundingID            *int64            `json:"roundingId,omitempty"`
+	RoundingID            NullInt64         `json:"roundingId,omitempty"`
 	FileID                json.RawMessage   `json:"fileId,omitempty"`
 	GroupID               int64             `json:"groupId,omitempty"`
-	PreviousID            *int64            `json:"previousId,omitempty"`
+	PreviousID            NullInt64         `json:"previousId,omitempty"`
 	Attachments           []json.RawMessage `json:"attachments,omitempty"`
 	Type                  string            `json:"type,omitempty"`
 	BookType              string            `json:"bookType,omitempty"`
@@ -3113,7 +3113,7 @@ type Order struct {
 	Open                  float64           `json:"open,omitempty"`
 	GroupOpen             float64           `json:"groupOpen,omitempty"`
 	CurrencyRate          float64           `json:"currencyRate,omitempty"`
-	DiscountPercentage    *float64          `json:"discountPercentage,omitempty"`
+	DiscountPercentage    NullFloat64       `json:"discountPercentage,omitempty"`
 	QrReference           string            `json:"qrReference,omitempty"`
 	Iso11649Reference     string            `json:"iso11649Reference,omitempty"`
 	CustomReference       json.RawMessage   `json:"customReference,omitempty"`
@@ -3149,10 +3149,10 @@ type Order struct {
 	ActionID              string            `json:"actionId,omitempty"`
 	Recurrence            *string           `json:"recurrence,omitempty"`
 	EndDate               *string           `json:"endDate,omitempty"`
-	DaysBefore            *int              `json:"daysBefore,omitempty"`
+	DaysBefore            NullInt64         `json:"daysBefore,omitempty"`
 	NotifyType            *string           `json:"notifyType,omitempty"`
-	NotifyPersonID        *int64            `json:"notifyPersonId,omitempty"`
-	NotifyUserID          *int64            `json:"notifyUserId,omitempty"`
+	NotifyPersonID        NullInt64         `json:"notifyPersonId,omitempty"`
+	NotifyUserID          NullInt64         `json:"notifyUserId,omitempty"`
 	StartDate             *string           `json:"startDate,omitempty"`
 	NotifyEmail           *string           `json:"notifyEmail,omitempty"`
 	CategoryName          string            `json:"categoryName,omitempty"`
@@ -3249,13 +3249,13 @@ type OrderBookentry struct {
 	CreatedBy             string              `json:"createdBy,omitempty"`
 	LastUpdated           string              `json:"lastUpdated,omitempty"`
 	LastUpdatedBy         string              `json:"lastUpdatedBy,omitempty"`
-	TemplateID            *int64              `json:"templateId,omitempty"`
+	TemplateID            NullInt64           `json:"templateId,omitempty"`
 	OrderID               int64               `json:"orderId,omitempty"`
 	AccountID             int64               `json:"accountId,omitempty"`
 	DebitID               int64               `json:"debitId,omitempty"`
 	CreditID              int64               `json:"creditId,omitempty"`
-	TaxID                 *int64              `json:"taxId,omitempty"`
-	CurrencyID            *int64              `json:"currencyId,omitempty"`
+	TaxID                 NullInt64           `json:"taxId,omitempty"`
+	CurrencyID            NullInt64           `json:"currencyId,omitempty"`
 	ImportEntryID         json.RawMessage     `json:"importEntryId,omitempty"`
 	Type                  string              `json:"type,omitempty"`
 	Date                  string              `json:"date,omitempty"`
@@ -3310,7 +3310,7 @@ type OrderCategoryBookTemplate struct {
 	LastUpdatedBy string          `json:"lastUpdatedBy,omitempty"`
 	CategoryID    int64           `json:"categoryId,omitempty"`
 	AccountID     int64           `json:"accountId,omitempty"`
-	TaxID         *int64          `json:"taxId,omitempty"`
+	TaxID         NullInt64       `json:"taxId,omitempty"`
 	Name          string          `json:"name,omitempty"`
 	Pos           int             `json:"pos,omitempty"`
 	Text          json.RawMessage `json:"text,omitempty"`
@@ -3328,19 +3328,19 @@ type OrderCategory struct {
 	LastUpdated           string                      `json:"lastUpdated,omitempty"`
 	LastUpdatedBy         string                      `json:"lastUpdatedBy,omitempty"`
 	AccountID             int64                       `json:"accountId,omitempty"`
-	CurrencyID            *int64                      `json:"currencyId,omitempty"`
+	CurrencyID            NullInt64                   `json:"currencyId,omitempty"`
 	Status                []OrderCategoryStatus       `json:"status,omitempty"`
 	BookTemplates         []OrderCategoryBookTemplate `json:"bookTemplates,omitempty"`
 	SequenceNrID          int64                       `json:"sequenceNrId,omitempty"`
 	LayoutID              int64                       `json:"layoutId,omitempty"`
 	SentStatusID          *int64                      `json:"sentStatusId,omitempty"`
 	ResponsiblePersonID   *string                     `json:"responsiblePersonId,omitempty"`
-	RoundingID            *int64                      `json:"roundingId,omitempty"`
-	FileID                *int64                      `json:"fileId,omitempty"`
+	RoundingID            NullInt64                   `json:"roundingId,omitempty"`
+	FileID                NullInt64                   `json:"fileId,omitempty"`
 	Attachments           []json.RawMessage           `json:"attachments,omitempty"`
-	HeaderTemplateID      *int64                      `json:"headerTemplateId,omitempty"`
-	FooterTemplateID      *int64                      `json:"footerTemplateId,omitempty"`
-	MailTemplateID        *int64                      `json:"mailTemplateId,omitempty"`
+	HeaderTemplateID      NullInt64                   `json:"headerTemplateId,omitempty"`
+	FooterTemplateID      NullInt64                   `json:"footerTemplateId,omitempty"`
+	MailTemplateID        NullInt64                   `json:"mailTemplateId,omitempty"`
 	NameSingular          string                      `json:"nameSingular,omitempty"`
 	NamePlural            string                      `json:"namePlural,omitempty"`
 	Type                  string                      `json:"type,omitempty"`

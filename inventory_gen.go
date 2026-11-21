@@ -2591,8 +2591,8 @@ type InventoryArticle struct {
 	CategoryID                 int64             `json:"categoryId,omitempty"`
 	ThumbnailFileID            json.RawMessage   `json:"thumbnailFileId,omitempty"`
 	UnitID                     int64             `json:"unitId,omitempty"`
-	CurrencyID                 *int64            `json:"currencyId,omitempty"`
-	LocationID                 *int64            `json:"locationId,omitempty"`
+	CurrencyID                 NullInt64         `json:"currencyId,omitempty"`
+	LocationID                 NullInt64         `json:"locationId,omitempty"`
 	Type                       string            `json:"type,omitempty"`
 	DateAdded                  string            `json:"dateAdded,omitempty"`
 	Nr                         string            `json:"nr,omitempty"`
@@ -2623,10 +2623,10 @@ type InventoryArticle struct {
 	UnitName                   string            `json:"unitName,omitempty"`
 	LocationName               json.RawMessage   `json:"locationName,omitempty"`
 	CurrencyCode               string            `json:"currencyCode,omitempty"`
-	LastPurchasePrice          *float64          `json:"lastPurchasePrice,omitempty"`
-	Stock                      *float64          `json:"stock,omitempty"`
-	MinStock                   *float64          `json:"minStock,omitempty"`
-	MaxStock                   *float64          `json:"maxStock,omitempty"`
+	LastPurchasePrice          NullFloat64       `json:"lastPurchasePrice,omitempty"`
+	Stock                      NullFloat64       `json:"stock,omitempty"`
+	MinStock                   NullFloat64       `json:"minStock,omitempty"`
+	MaxStock                   NullFloat64       `json:"maxStock,omitempty"`
 	BinLocation                *string           `json:"binLocation,omitempty"`
 	AllocationCount            float64           `json:"allocationCount,omitempty"`
 	CostCenterIDs              json.RawMessage   `json:"costCenterIds,omitempty"`
@@ -2643,7 +2643,7 @@ type InventoryArticleCategory struct {
 	CreatedBy             string            `json:"createdBy,omitempty"`
 	LastUpdated           string            `json:"lastUpdated,omitempty"`
 	LastUpdatedBy         string            `json:"lastUpdatedBy,omitempty"`
-	ParentID              *int64            `json:"parentId,omitempty"`
+	ParentID              NullInt64         `json:"parentId,omitempty"`
 	SequenceNrID          *int64            `json:"sequenceNrId,omitempty"`
 	SalesAccountID        int64             `json:"salesAccountId,omitempty"`
 	PurchaseAccountID     int64             `json:"purchaseAccountId,omitempty"`

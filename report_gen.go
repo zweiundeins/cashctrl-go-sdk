@@ -1312,7 +1312,7 @@ type ReportElement struct {
 	LastUpdated   string            `json:"lastUpdated,omitempty"`
 	LastUpdatedBy string            `json:"lastUpdatedBy,omitempty"`
 	CollectionID  int64             `json:"collectionId,omitempty"`
-	FileID        *int64            `json:"fileId,omitempty"`
+	FileID        NullInt64         `json:"fileId,omitempty"`
 	Attachments   []json.RawMessage `json:"attachments,omitempty"`
 	Type          string            `json:"type,omitempty"`
 	Name          string            `json:"name,omitempty"`
