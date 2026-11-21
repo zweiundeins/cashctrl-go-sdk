@@ -1,0 +1,8 @@
+# Where spec/api.json and spec/responses.json come from. Written by
+# scripts/sync-spec.sh; do not edit by hand.
+repo=https://github.com/zweiundeins/cashctrl-ts-sdk
+ref=v0.5.0
+commit=24b5e3b683ba8598475362dc8d163974f98d935b
+api.json.sha256=bf569cc1d48267117df93cee620b6b57d6b8d8dc8989368fd2b953ac642db7dc
+responses.json.sha256=cba74c3103f35c9b528b2dae088f4287d06c0694d4cce0432863b42a45f075b2
+overrides.ts.sha256=80aed58f654a71dd3a85f025fdb8af34c146cb425d2ae7d461fb5f1ddfcab8f3
