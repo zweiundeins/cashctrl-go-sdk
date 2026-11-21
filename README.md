@@ -147,10 +147,13 @@ the generator writes.
 
 ## Staying in sync with the TypeScript SDK
 
-CashCtrl changes its API without announcing it. The TypeScript SDK's weekly
-workflow (`.github/workflows/upstream.yml`, Mondays) re-scrapes the reference,
-re-probes the response shapes and opens a pull request when the spec moved.
-Once that is merged and released, sync this module to the release:
+The TypeScript SDK's weekly workflow (`.github/workflows/upstream.yml`,
+Mondays) re-scrapes the reference and opens a pull request when the spec moved.
+CashCtrl also announces API changes by email to its API users, and such a
+change does not always reach the reference: on an announcement, re-probe the
+response shapes in the TypeScript SDK (`deno task probe`, see its
+CONTRIBUTING.md), release it, and sync. Once a spec change is merged and
+released, sync this module to the release:
 
 ```sh
 scripts/sync-spec.sh v0.6.0                          # from GitHub
